@@ -1,0 +1,6 @@
+*.pyc
+data/*
+work_dir/*
+*.pt
+*.log
+train-loss/*
