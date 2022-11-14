@@ -46,21 +46,27 @@ pip install matplotlib
 
 # 训练命令
 
-加上 -cpu是指在cpu端训练。
+先激活环境：
 
 ```shell
-python main.py -cpu
+conda activate nnue-env
+```
+
+加上 --cpu是指在cpu端训练。
+
+```shell
+python main.py --cpu
 ```
 
 使用 gpu 从上一次训练的模型开始进行训练，注意配置好best_modules_path的路径
 
 ```shell
-python main.py –from_checkpoint
+python main.py --from_checkpoint
 ```
 
 另外，若是使用tensorboard可视化loss训练情况，可以使用下述命令：
 
 ```
-Tensorboard –logdir path
+sanmill-nnue-pytorch\work_dir\YYYYMMDD_HHMMSS>tensorboard --logdir .
 ```
 
