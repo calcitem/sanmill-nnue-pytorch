@@ -27,13 +27,13 @@ class Module(torch.nn.Module):
         self.bn2 = torch.nn.BatchNorm1d(L1, eps=1e-05, momentum=0.1, affine=True,\
              track_running_stats=True)
 
-        self.fc21 = torch.nn.Linear(L1,L1,bias=True)
-        self.bn21 = torch.nn.BatchNorm1d(L1, eps=1e-05, momentum=0.1, affine=True,\
-             track_running_stats=True)
+        # self.fc21 = torch.nn.Linear(L1,L1,bias=True)
+        # self.bn21 = torch.nn.BatchNorm1d(L1, eps=1e-05, momentum=0.1, affine=True,\
+        #      track_running_stats=True)
 
-        self.fc22 = torch.nn.Linear(L1,L1,bias=True)
-        self.bn22 = torch.nn.BatchNorm1d(L1, eps=1e-05, momentum=0.1, affine=True, \
-            track_running_stats=True)
+        # self.fc22 = torch.nn.Linear(L1,L1,bias=True)
+        # self.bn22 = torch.nn.BatchNorm1d(L1, eps=1e-05, momentum=0.1, affine=True, \
+        #     track_running_stats=True)
 
         self.fc3 = torch.nn.Linear(L1,L2,bias=True)
         self.bn3 = torch.nn.BatchNorm1d(L2, eps=1e-05, momentum=0.1, affine=True,\
@@ -58,13 +58,13 @@ class Module(torch.nn.Module):
         out = self.bn2(out)
         out = self.relu(out)
 
-        out = self.fc21(out)
-        out = self.bn21(out)
-        out = self.relu(out)
+       # out = self.fc21(out)
+        #out = self.bn21(out)
+       # out = self.relu(out)
 
-        out = self.fc22(out)
-        out = self.bn22(out)
-        out = self.relu(out)
+        #out = self.fc22(out)
+        #out = self.bn22(out)
+        #out = self.relu(out)
 
         out = self.fc3(out)
         out = self.bn3(out)
