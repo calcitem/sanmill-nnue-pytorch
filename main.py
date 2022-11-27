@@ -84,6 +84,8 @@ if __name__=="__main__":
 
     if not os.path.exists(work_dir+"/best_modules"):
         os.mkdir(work_dir+"/best_modules")
+    if not os.path.exists(work_dir+"/min_trainloss_modules"):
+        os.mkdir(work_dir+"/min_trainloss_modules")
 
     device = torch.device("cuda:{}".format(arg.gpu_id) if torch.cuda.is_available() else "cpu")
 
@@ -153,7 +155,7 @@ if __name__=="__main__":
             # 对应nnue的损失函数
             loss_eval = (p.sigmoid() - q.sigmoid()).square().mean()
             loss_result = (q - t).square().mean()
-            loss = 0.6 * loss_eval + (1.0 - 0.6) * loss_result
+            loss = 1.0 * loss_eval + (1.0 - 1.0) * loss_result
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
