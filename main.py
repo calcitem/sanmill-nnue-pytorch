@@ -22,7 +22,7 @@ def parse_args():
     parser.add_argument('--val', type=str, default='./data',
                         help='测试集')
     # 学习率，过大会导致模型收敛不佳，过小使得模型的训练进度比较慢。推荐0.001-0.00001之间
-    parser.add_argument('--lr', type=float, default='0.0001',
+    parser.add_argument('--lr', type=float, default='0.00001',
                         help='学习率')
     parser.add_argument('--use_quantize', action='store_true',
                         help='是否使用量化')
@@ -130,7 +130,9 @@ if __name__=="__main__":
 
     # 记录最小验证精度
     min_val_mse = 10000
+    min_loss_mse = 10000
     best_modules_path = ""
+    best_modules_path1 = ""
     val_step = arg.val_epochs_interval
 
     # 开始训练
@@ -188,7 +190,11 @@ if __name__=="__main__":
                 #     best_qmodules_path = work_dir+"/best_modules/"+'best-'+timestamp+'qmodule.pt'
                 #     torch.save(mynet_quantized.state_dict(), best_qmodules_path)
 
-
+            if min_loss_mse > train_loss:
+                min_loss_mse = train_loss
+                logging.info("min train_loss_mse:{}".format(min_loss_mse))
+                best_modules_path1 = work_dir+"/min_trainloss_modules/"+'best-'+timestamp+'.pt'
+                torch.save(mynet.state_dict(), best_modules_path1)
             st = "| val:epoch: {} |  train_loss: {} |val_loss: {}".format(epoch,train_loss,val_loss)
             logging.info(st)
             print(st)
